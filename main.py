@@ -43,6 +43,8 @@ button_login= ct.CTkButton(screen,text="Login",fg_color="yellow",width=150,
 button_login.place(x=350,y=400)
 
 
+button_send_code = ct.CTkButton(screen,text="Verify",fg_color="red",width=150, height=50, command= )
+
 
 def show_button_signup():
     my_passwordentry.place_forget()

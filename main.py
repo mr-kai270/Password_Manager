@@ -33,21 +33,14 @@ def get_userid_password():
 
 
 
-
-
-
-
-
-
-
 button_login= ct.CTkButton(screen,text="Login",fg_color="yellow",width=150,
                      height=50,command=get_userid_password, hover_color="darkgreen")
 button_login.place(x=350,y=400)
 
 
-# button_signup = ct.CTkButton(screen,text="Sign_UP",fg_color="yellow",width=150,
-#                              height=50,command=)
-
+button_signup = ct.CTkButton(screen,text="Sign_UP",fg_color="yellow",width=150,
+                             height=50)
+button_signup.place(x=350,y=455)
 
 screen.mainloop()
 

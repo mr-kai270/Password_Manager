@@ -48,7 +48,7 @@ my_signupentry = ct.CTkEntry(screen,placeholder_text="Enter Email id")
 
 def  send_mail_from_signupentry_mail():
     email = my_signupentry.get()
-    MAIL.send_eamil(cod=code,to=email)
+    MAIL.send_eamil(cod=code,to=email)       
 #  Function sends mail from the given mail in the signup entry, takes code from random_numbers 
 
 
@@ -56,8 +56,7 @@ def  send_mail_from_signupentry_mail():
 
 
 # button to send code to the user input email
-button_send_code = ct.CTkButton(screen,text="Send_code",fg_color="red",width=150, height=50, command=send_mail_from_signupentry_mail )
-
+button_send_code = ct.CTkButton(screen,text="Send Code",fg_color="red",command=send_mail_from_signupentry_mail)                                                                                                           
 
 User_code = ct.CTkEntry(screen,placeholder_text="Enter code",fg_color="white",placeholder_text_color="red")
 
@@ -76,7 +75,6 @@ def show_button_signup():
 
 
 # widget to take user input
-
 def verify_code():
     user_given_code = User_code.get()    
     if user_given_code == code:

@@ -1,6 +1,8 @@
 import customtkinter as ct
 import csv 
 import pandas as pd
+# from random_numbers import Numbers
+from signup import SIGNUP
 
 screen = ct.CTk()
 screen.title("PASSWORD MANAGER")
@@ -38,8 +40,10 @@ button_login= ct.CTkButton(screen,text="Login",fg_color="yellow",width=150,
 button_login.place(x=350,y=400)
 
 
+signup_command = SIGNUP(label1=button_login,label2=my_passwordentry)
+
 button_signup = ct.CTkButton(screen,text="Sign_UP",fg_color="yellow",width=150,
-                             height=50)
+                             height=50,command=signup_command)
 button_signup.place(x=350,y=455)
 
 screen.mainloop()

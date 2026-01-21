@@ -10,6 +10,9 @@ screen.configure(fg_color = "#000000")
 my_loginentry = ct.CTkEntry(screen,placeholder_text="User_id",)
 my_loginentry.place(x=350,y=300)
 
+df = pd.DataFrame({'Login_Id':["fsdsdf","sf"],'Password':["sddfs","fds"]})
+df.to_csv('data.csv',index=False)
+
 df = pd.read_csv('data.csv')
 
 my_passwordentry = ct.CTkEntry(screen,placeholder_text="User_password")
@@ -17,33 +20,20 @@ my_passwordentry.place(x=350,y=350)
 
 
 def get_userid_password():
+    global df
     o_login = my_loginentry.get()
     o_pass = my_passwordentry.get()
-    # with open ('data.csv' , 'w') as csvfile:
-        # fieldnames = ['LOGIN_ID','PASSWORD']
-        # writer = csv.DictWriter(csvfile,fieldnames=fieldnames)
 
+    data_to_append = {'Login_Id':[o_login],'Password':[o_pass]}
+    data_to_append_df = pd.DataFrame(data_to_append)
+    df = pd.concat([df,data_to_append_df],ignore_index=True)
 
-
-        # writer.writeheader()
-        # writer.writerow({'LOGIN_ID': o_login,
-                        #  'PASSWORD':o_pass})
-    df[o_login] = [o_pass]
-    df.to_csv('data.csv', index= False)                    
-
-
-
-
-
+    df.to_csv('data.csv',index= False)
 
 
 button= ct.CTkButton(screen,text="My_Button",fg_color="blue",width=150,
                      height=50,command=get_userid_password, hover_color="darkgreen")
 button.place(x=350,y=400)
-
-
-
-
 
 
 

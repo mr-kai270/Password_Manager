@@ -2,7 +2,7 @@ import customtkinter as ct
 import csv 
 import pandas as pd
 # from random_numbers import Numbers
-from signup import SIGNUP
+# from signup import SIGNUP
 
 screen = ct.CTk()
 screen.title("PASSWORD MANAGER")
@@ -34,17 +34,32 @@ def get_userid_password():
     Main_data_file.to_csv('data.csv',index= False)
 
 
+my_signupentry = ct.CTkEntry(screen,placeholder_text="Enter Email id")
+
+
 
 button_login= ct.CTkButton(screen,text="Login",fg_color="yellow",width=150,
                      height=50,command=get_userid_password, hover_color="darkgreen")
 button_login.place(x=350,y=400)
 
 
-signup_command = SIGNUP(label1=button_login,label2=my_passwordentry)
+
+def show_button_signup():
+    my_passwordentry.place_forget()
+    my_loginentry.place_forget()
+    button_login.place_forget()
+    my_signupentry.place(relx=0.5,rely=0.5,anchor=ct.CENTER)
+
+
+
+
 
 button_signup = ct.CTkButton(screen,text="Sign_UP",fg_color="yellow",width=150,
-                             height=50,command=signup_command)
+                             height=50,command=show_button_signup)
 button_signup.place(x=350,y=455)
+
+
+
 
 screen.mainloop()
 

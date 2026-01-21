@@ -1,8 +1,12 @@
 import customtkinter as ct
 import csv 
 import pandas as pd
-# from random_numbers import Numbers
-# from signup import SIGNUP
+from random_numbers import Numbers
+from eamil import MAIL
+
+
+number = Numbers()
+code = number.generator() # the code to be send on the email
 
 screen = ct.CTk()
 screen.title("PASSWORD MANAGER")
@@ -21,59 +25,74 @@ my_passwordentry = ct.CTkEntry(screen,placeholder_text="User_password")
 my_passwordentry.place(x=350,y=350)
 
 
-# retrives data 0f user id and password from the widget and sends to the database for checking the data
+
 def get_userid_password():
     global Main_data_file
     o_login = my_loginentry.get()
     o_pass = my_passwordentry.get()
-
+# retrives data 0f user id
+#  and password from the widget and sends to the database for checking the data
     data_to_append = {'Login_Id':[o_login],'Password':[o_pass]}
     data_to_append_df = pd.DataFrame(data_to_append)
     Main_data_file = pd.concat([Main_data_file,data_to_append_df],ignore_index=True)
 
     Main_data_file.to_csv('data.csv',index= False)
 
-
-my_signupentry = ct.CTkEntry(screen,placeholder_text="Enter Email id")
-
-
-
 button_login= ct.CTkButton(screen,text="Login",fg_color="yellow",width=150,
                      height=50,command=get_userid_password, hover_color="darkgreen")
 button_login.place(x=350,y=400)
 
 
-button_send_code = ct.CTkButton(screen,text="Verify",fg_color="red",width=150, height=50, command= )
+# Takes entry of te email
+my_signupentry = ct.CTkEntry(screen,placeholder_text="Enter Email id")
+
+def  send_mail_from_signupentry_mail():
+    email = my_signupentry.get()
+    MAIL.send_eamil(cod=code,to=email)
+#  Function sends mail from the given mail in the signup entry, takes code from random_numbers 
+
+
+
+
+
+# button to send code to the user input email
+button_send_code = ct.CTkButton(screen,text="Send_code",fg_color="red",width=150, height=50, command=send_mail_from_signupentry_mail )
+
+
+User_code = ct.CTkEntry(screen,placeholder_text="Enter code",fg_color="white",placeholder_text_color="red")
 
 
 def show_button_signup():
     my_passwordentry.place_forget()
+# sign up button function closes the passwoed and login entry widget and also pop ups the 
+# email dialog and send email code 
     my_loginentry.place_forget()
     button_login.place_forget()
+    button_send_code.place(x=350,y=400)
     my_signupentry.place(relx=0.5,rely=0.5,anchor=ct.CENTER)
+    User_code.place(x=370,y=350)
+    button_to_verify.place(x=180,y=300)
 
 
+
+# widget to take user input
+
+def verify_code():
+    user_given_code = User_code.get()    
+    if user_given_code == code:
+        print("sucess")
+
+
+button_to_verify = ct.CTkButton(screen,text="veifynow",fg_color="red",width=150,height=50,
+                                command=verify_code)
 
 
 
 button_signup = ct.CTkButton(screen,text="Sign_UP",fg_color="yellow",width=150,
                              height=50,command=show_button_signup)
-button_signup.place(x=350,y=455)
-
-
+button_signup.place(x=350,y=455)  
+#  sign up -------- Button
 
 
 screen.mainloop()
 
-
-
-
-# def show_label1():
-#     # Hide others (if they were shown) and show Label 1
-#     label2.place_forget() # Removes it from the layout
-#     label3.place_forget()
-#     label1.place(relx=0.5, rely=0.5, anchor=ctk.CENTER) # Show label
-
-
-# btn1 = ctk.CTkButton(app, text="Show Label 1", command=show_label1)
-# btn1.pack(pady=10)

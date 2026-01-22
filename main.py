@@ -50,7 +50,7 @@ def  send_mail_from_signupentry_mail():
     email = my_signupentry.get()
     MAIL.send_eamil(cod=code,to=email)       
 #  Function sends mail from the given mail in the signup entry, takes code from random_numbers 
-
+    
 
 
 
@@ -73,12 +73,12 @@ def show_button_signup():
     button_to_verify.place(x=180,y=300)
 
 
-
 # widget to take user input
 def verify_code():
     user_given_code = User_code.get()    
     if user_given_code == code:
         print("sucess")
+        # MAIL.send_login_id(to=my_signupentry.get(),login_id_password=)
 
 
 button_to_verify = ct.CTkButton(screen,text="veifynow",fg_color="red",width=150,height=50,

@@ -4,7 +4,6 @@ import pandas as pd
 from random_numbers import Numbers
 from eamil import MAIL
 
-
 number = Numbers()
 code = number.generator() # the code to be send on the email
 
@@ -57,6 +56,8 @@ def  send_mail_from_signupentry_mail():
 
 # button to send code to the user input email
 button_send_code = ct.CTkButton(screen,text="Send Code",fg_color="red",command=send_mail_from_signupentry_mail)                                                                                                           
+button_send_code.place(x=450,y=400)
+
 
 User_code = ct.CTkEntry(screen,placeholder_text="Enter code",fg_color="white",placeholder_text_color="red")
 

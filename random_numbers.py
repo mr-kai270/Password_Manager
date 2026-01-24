@@ -13,3 +13,4 @@ class Numbers():
             n = str(n)
             self.final_num+=n
         return self.final_num        
+# It gives a 6 digit number for verificatrion of email.
